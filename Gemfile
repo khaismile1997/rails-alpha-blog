@@ -29,6 +29,7 @@ gem 'rubocop-rails', require: false
 gem 'rubocop-checkstyle_formatter', require: false
 gem 'rubocop-rspec', require: false
 gem 'rubocop-thread_safety', require: false
+gem 'will_paginate', '~> 3.3'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
