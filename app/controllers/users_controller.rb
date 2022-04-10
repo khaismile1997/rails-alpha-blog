@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :set_user, only: [:edit, :update, :show]
+
   def index
     @users = User.paginate(page: params[:page], per_page: 5)
   end
 
   def show
-    @user = User.find(params[:id])
     @articles = @user.articles.paginate(page: params[:page], per_page: 5)
   end
 
@@ -14,12 +15,9 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @user = User.find(params[:id])
     return render "edit" unless @user.update(user_params)
 
     flash[:notice] = "Your information was successful updated!"
@@ -29,6 +27,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     return render "new" unless @user.save
+    session[:user_id] = @user.id
     flash[:notice] = "Welcome to Alpha Blog #{@user.username}! You have successful signup!"
     redirect_to articles_path
   end
@@ -36,5 +35,9 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:username, :email, :password)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end
