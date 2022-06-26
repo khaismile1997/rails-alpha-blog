@@ -6,19 +6,11 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
-
-* System dependencies
-
+- ruby 3.0.2
+- rails 6.1.4.4
 * Configuration
-
+- run yarn add bootstrap@4.6.1 jquery popper.js
 * Database creation
-
+- sqlite
 * Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- run rails db:migrate
